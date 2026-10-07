@@ -1,0 +1,230 @@
+# ### =================================================================
+# ### ⚙️ GLOBAL BASE CONFIGURATION
+# ### =================================================================
+# @baseUrl = http://localhost:8000/api
+# @token =eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhM2VjNDFkM2QyYmY1NDY2YjUzYTBlNiIsImlhdCI6MTc4MjUwMDkxMCwiZXhwIjoxNzg1MDkyOTEwfQ.5gDNGtUF6kmHPPdL2g6AcVrSgNRzcMQndGfmcPwPFTU
+# ### =================================================================
+# ### 🔐 STEP 1: AUTHENTICATION FLOW
+# ### =================================================================
+
+# ### A. Register User (Real Email Par OTP Jayega)
+# POST {{baseUrl}}/auth/register
+# Content-Type: application/json
+
+# {
+#     "name": "Kanika Gupta",
+#     "emails": "kanikatest20145@gmail.com",
+#     "password": "password123"
+# }
+
+# ### B. Verify OTP (Inbox Se Dekh Kar Yahan Daliye)
+# POST {{baseUrl}}/auth/verify-email
+# Content-Type: application/json
+
+# {
+#     "emails": "kanikatest20145@gmail.com",
+#     "otp": "281751"
+# }
+
+# ### C. Login User
+# POST {{baseUrl}}/auth/login
+# Content-Type: application/json
+
+# {
+#     "emails": "kanikatest20145@gmail.com",
+#     "password": "password123"
+# }
+
+
+# ### =================================================================
+# ### 📦 STEP 2: TRANSACTIONS & ORDERS
+# ### =================================================================
+
+# ### A. Create Order
+
+# yJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhM2VjNDFkM2QyYmY1NDY2YjUzYTBlNiIsImlhdCI6MTc4MjQ5OTEyNiwiZXhwIjoxNzg1MDkxMTI2fQ.jiS_YHQvxaD6CvhZP7Kuf_l-RRiYmnsXEI1Gp7v4Ylw
+
+
+# POST http://localhost:8000/api/orders
+# Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhM2VjNDFkM2QyYmY1NDY2YjUzYTBlNiIsImlhdCI6MTc4MjUwMDkxMCwiZXhwIjoxNzg1MDkyOTEwfQ.5gDNGtUF6kmHPPdL2g6AcVrSgNRzcMQndGfmcPwPFTU
+# Content-Type: application/json
+
+# {
+#     "items": [
+#         {
+#             // 🎯 YAHAN JAYEGI PRODUCT ID: Product create hone k baad jo 
+#             // right side response screen pr '_id' milegi, wo yahan chipkao!
+#             "product": "6a3ec41d3d2bf5466b53a0e6", 
+#             "qty": 1,
+#             "price": 1200
+#         }
+#     ],
+#     "totalAmount": 1200,
+#     "address": {
+#         "fullName": "Kanika Gupta",
+#         "street": "Vikas Marg",
+#         "city": "Delhi",
+#         "postalCode": "110092",
+#         "country": "India"
+#     },
+#     "paymentId": "pay_test_123"
+# }
+
+# ### B. Get My Orders
+
+
+# STEP 2: CREATE ORDER (Hit after updating Token & Product ID)
+# ### =================================================================
+# POST http://localhost:8000/api/orders
+# Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhM2VjNDFkM2QyYmY1NDY2YjUzYTBlNiIsImlhdCI6MTc4MjQ5OTUwNywiZXhwIjoxNzg1MDkxNTA3fQ.9jgXOuhfQfnxPrUxL3Qqi5vDr2bJA3ltbAZneCw4Z9c
+# Content-Type: application/json
+
+# {
+#     "items": [
+#         {
+#             "product": "6a3ec41d3d2bf5466b53a0e6", 
+#             "qty": 1,
+#             "price": 1200
+#         }
+#     ],
+#     "totalAmount": 1200,
+#     "address": {
+#         "fullName": "Kanika Gupta",
+#         "street": "Vikas Marg",
+#         "city": "Delhi",
+#         "postalCode": "110092",
+#         "country": "India"
+#     },
+#     "paymentId": "pay_test_123"
+# }
+
+
+# ### =================================================================
+# ### 🚚 STEP 3: GET MY ORDERS (Hit to see your order)
+# ### =================================================================
+# GET http://localhost:8000/api/orders/myorders
+# Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhM2VjNDFkM2QyYmY1NDY2YjUzYTBlNiIsImlhdCI6MTc4MjQ5OTUwNywiZXhwIjoxNzg1MDkxNTA3fQ.9jgXOuhfQfnxPrUxL3Qqi5vDr2bJA3ltbAZneCw4Z9c
+# Content-Type: application/json
+
+
+
+# ### =================================================================
+# ### 👑 STEP 3: ADMIN & ANALYTICS
+# ### =================================================================
+
+# ### A. Master View (All Orders)
+# GET {{baseUrl}}/orders
+# Authorization: Bearer {{token}}
+
+# ### B. Get Store Analytics
+# GET {{baseUrl}}/analytics
+# Authorization: Bearer {{token}}
+
+
+
+# ### 🛍️ 1. PRODUCT BODY CHECK (Pehle ise hit karo)
+# POST http://localhost:8000/api/products
+# Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhM2VjNDFkM2QyYmY1NDY2YjUzYTBlNiIsImlhdCI6MTc4MjUwMDkxMCwiZXhwIjoxNzg1MDkyOTEwfQ.5gDNGtUF6kmHPPdL2g6AcVrSgNRzcMQndGfmcPwPFTU
+# Content-Type: application/json
+
+# {
+#     "name": "Testing Designer wear Kurti",
+#     "description": "Inserting product to check mongo connection",
+#     "price": 120x0,
+#     "category": "Clothing",
+#     "stock": 40,
+#     "image": "https://example.com/kurti.jpg"
+# }
+
+
+# ### 📦 2. ORDER BODY CHECK (Product ID update karke hit karo)
+# POST http://localhost:8000/api/orders
+# Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhM2VjNDFkM2QyYmY1NDY2YjUzYTBlNiIsImlhdCI6MTc4MjUwMDkxMCwiZXhwIjoxNzg1MDkyOTEwfQ.5gDNGtUF6kmHPPdL2g6AcVrSgNRzcMQndGfmcPwPFTU
+# Content-Type: application/json
+
+# {
+#     "items": [
+#         {
+#             "product": "6a3ec41d3d2bf5466b53a0e6", 
+#             "qty": 1,
+#             "price": 1200
+#         }
+#     ],
+#     "totalAmount": 1200,
+#     "address": {
+#         "fullName": "Kanika Gupta",
+#         "street": "Vikas Marg",
+#         "city": "Delhi",
+#         "postalCode": "110092",
+#         "country": "India"
+#     },
+#     "paymentId": "pay_test_123"
+# }
+
+
+
+### =================================================================
+### ⚙️ GLOBAL CONFIGURATION (Bas yahan ek baar data badlo)
+### =================================================================
+@baseUrl = http://localhost:8000/api
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhM2VjNDFkM2QyYmY1NDY2YjUzYTBlNiIsImlhdCI6MTc4MjUwMDkxMCwiZXhwIjoxNzg1MDkyOTEwfQ.5gDNGtUF6kmHPPdL2g6AcVrSgNRzcMQndGfmcPwPFTU
+
+### =================================================================
+### 🛍️ STEP 1: CREATE A PRODUCT
+### =================================================================
+# Is request ko hit karte hi data direct MongoDB ke 'products' collection me jayega!
+POST {{baseUrl}}/products
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "name": "Testing Designer wear Kurti",
+    "description": "Inserting product to check mongo connection",
+    "price": 1200,
+    "category": "Clothing",
+    "stock": 40,
+    "imageUrl": "https://example.com/kurti.jpg"
+}
+
+
+### =================================================================
+### 📦 STEP 2: CREATE AN ORDER
+### =================================================================
+# Is request ko hit karte hi data direct MongoDB ke 'orders' collection me jayega!
+POST {{baseUrl}}/orders
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "items": [
+        {
+            "product": "6a3ed4f922289b13a3f12e8f", 
+            "qty": 1,
+            "price": 1200
+        }
+    ],
+    "totalAmount": 1200,
+    "address": {
+        "fullName": "Kanika Gupta",
+        "street": "Vikas Marg",
+        "city": "Delhi",
+        "postalCode": "110092",
+        "country": "India"
+    },
+    "paymentId": "pay_test_123"
+}
+
+
+### =================================================================
+### 🚚 STEP 3: GET MY ORDERS
+### =================================================================
+# Yeh check karne k liye ki aapka order database se wapas aa raha h ya nahi
+GET {{baseUrl}}/orders/myorders
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+
+# B. Get Store Analytics
+
+ GET {{baseUrl}}/analytics
+ Authorization: Bearer {{token}}

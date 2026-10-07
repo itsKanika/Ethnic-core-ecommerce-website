@@ -1,0 +1,13 @@
+{
+  "name": "ecommerce-root",
+  "version": "1.0.0",
+  "description": "E-Commerce Project Root",
+  "main": "index.js",
+  "scripts": {
+    "install-all": "npm install --legacy-peer-deps && cd backend && npm install && cd ../frontend && npm install --legacy-peer-deps",
+    "dev": "concurrently \"cd backend && npm run dev\" \"cd frontend && npm start\""
+  },
+  "dependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
